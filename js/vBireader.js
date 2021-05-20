@@ -40,7 +40,13 @@ Bireader.fsm_mach = () => {
             },
             start: {
                 on: {
-                    FIRST: 'auto_play'
+                    FIRST: 'play'
+                }
+            },
+            play: {
+                on: {
+                    AUTO  : 'auto_play',
+                    MANUAL: 'manual_play',
                 }
             },
             auto_play: {                        // Auto-play mode
@@ -79,7 +85,7 @@ Bireader.fsm_mach = () => {
             },
             ended: {
                 on: {
-                    FIRST: 'auto_play'
+                    FIRST: 'play'
                 }
             },
         },
@@ -100,11 +106,13 @@ Bireader.fsm_handle = (evt,data) => {
     Bireader.fsm.state = next
 
     Bireader.fsm.dispatch[next](evt,data)        // Call the handler
+    m.redraw()
 }
 Bireader.fsm_dispatch = () => {
     return {
         init         : Bireader.fsm_onState_init,
         start        : Bireader.fsm_onState_start,
+        play         : Bireader.fsm_onState_play,
         auto_play    : Bireader.fsm_onState_auto_play,
         paused_auto  : Bireader.fsm_onState_paused_auto,
         paused_manual: Bireader.fsm_onState_paused_manual,
@@ -115,7 +123,13 @@ Bireader.fsm_dispatch = () => {
 Bireader.fsm_onState_start = (evt,data) => {
     Bireader.data.currIdx  = 0,
     console.log('starting in 3, 2, 1 seconds ... ')
-    // Bireader.fsm.handle('FIRST')
+}
+Bireader.fsm_onState_play = (evt,data) => {
+    if (Bireader.data.currMode) {
+        Bireader.fsm.handle('AUTO')
+    } else {
+        Bireader.fsm.handle('MANUAL')
+    }
 }
 Bireader.fsm_onState_auto_play = (evt,data) => {
     // Auto play the current segment
@@ -124,7 +138,7 @@ Bireader.fsm_onState_auto_play = (evt,data) => {
     //   Else, stop
     console.log(evt,data)
 
-    if (evt === 'FIRST') {
+    if (evt.match(/AUTO|MANUAL/)) {
         Bireader.data.currIdx = 0
     } else if (evt === 'NEXT') {
         Bireader.data.currIdx++
@@ -161,7 +175,7 @@ Bireader.fsm_onState_manual_play = (evt,data) => {
     // At the end of it, stop
     console.log(evt,data)
 
-    if (evt === 'FIRST') {
+    if (evt.match(/AUTO|MANUAL/)) {
         Bireader.data.currIdx = 0
     } else if (evt === 'NEXT') {
         Bireader.data.currIdx++
@@ -180,7 +194,9 @@ Bireader.fsm_onState_manual_play = (evt,data) => {
         // Check whether next segment exists
         let j = Bireader.data.currIdx + 1
         console.log(j , Bireader.data.segmentList.length-1)
-        if (j > Bireader.data.segmentList.length-1) {
+        if (j <= Bireader.data.segmentList.length-1) {
+            Bireader.fsm.handle('PAUSE')
+        } else {
             Bireader.fsm.handle('END')
         }
     }
