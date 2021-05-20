@@ -113,7 +113,6 @@ Bireader.fsm_dispatch = () => {
     }
 }
 Bireader.fsm_onState_start = (evt,data) => {
-    Bireader.data.currMode = 1,
     Bireader.data.currIdx  = 0,
     console.log('starting in 3, 2, 1 seconds ... ')
     // Bireader.fsm.handle('FIRST')
@@ -177,7 +176,14 @@ Bireader.fsm_onState_manual_play = (evt,data) => {
     // Setup the audioNow tag and play it
     let now = document.getElementById('audioNow')
     now.src = 'audio/'+Bireader.data.currIdx+'.mp3'
-    now.onended = undefined
+    now.onended = () => {
+        // Check whether next segment exists
+        let j = Bireader.data.currIdx + 1
+        console.log(j , Bireader.data.segmentList.length-1)
+        if (j > Bireader.data.segmentList.length-1) {
+            Bireader.fsm.handle('END')
+        }
+    }
     now.play()
     .then(res => {
         console.log('Playing segment:' + Bireader.data.currIdx)
@@ -186,8 +192,15 @@ Bireader.fsm_onState_manual_play = (evt,data) => {
 }
 Bireader.fsm_onState_paused_auto = (evt,data) => {
     let now = document.getElementById('audioNow')
+    Bireader.data.currMode = 1
     now.pause()
     console.log('Paused auto play')
+}
+Bireader.fsm_onState_paused_manual = (evt,data) => {
+    let now = document.getElementById('audioNow')
+    Bireader.data.currMode = 0
+    now.pause()
+    console.log('Paused manual play')
 }
 Bireader.fsm_onState_ended = (evt,data) => {
     console.log('ended')
@@ -206,43 +219,35 @@ Bireader.section.main = () => {
 Bireader.section.translation = () => {
     // Guard show nothing if no segment selected
     if (Bireader.data.currIdx < 0) { return }
-    return m('div.dark-gray.bg-washed-red',
+    return m('div.dark-gray.bg-lightest-blue',
              Bireader.data.segmentList[Bireader.data.currIdx].tran)
 }
 Bireader.section.controls = () => {
-    let mode = () => {
-        if (Bireader.data.currMode) {
-            return m('span',
-                     {onclick:()=>{Bireader.fsm.handle('MODE')}}
-                     ,'[A]')
-        } else {
-            return m('span',
-                     {onclick:()=>{Bireader.fsm.handle('MODE')}}
-                     ,'[M]')
-        }
-    }
 
-    // Guard: Show Start button on startup
+    // Show Play button on startup
     if (Bireader.fsm.state === 'start') {
-        return m('div.red',
+        return m('div.dark-blue',
                  {onclick:() => {Bireader.fsm.handle('FIRST')}},
-                 'START')
+                 m('i.fa.fa-play'))
+
+    // Show Repeat button on end
     } else if (Bireader.fsm.state === 'ended') {
-        return m('div.red',
+        return m('div.dark-blue',
                  {onclick:() => {Bireader.fsm.handle('FIRST')}},
-                 'AGAIN')
+                 m('i.fa.fa-repeat'))
     }
 
     let can = msg => {
         let s = Bireader.fsm.state
-        return typeof(Bireader.fsm.m.states[s].on[msg]) !== "undefined"
+        return typeof(Bireader.fsm.m.states[s].on[msg]) !== "undefined" ? true : ''
     }
     let canPrev = () => {
-        return can('PREV') && (Bireader.data.currIdx > 0)
+        return can('PREV') && (Bireader.data.currIdx > 0) ? true : ''
     }
     let canNext = () => {
         return can('NEXT')
-               && (Bireader.data.currIdx < Bireader.data.segmentList.length-1)
+               && (Bireader.data.currIdx
+                    < Bireader.data.segmentList.length-1) ? true : ''
     }
     let onPause = () => { can('PAUSE')  && Bireader.fsm.handle('PAUSE') }
     let onPlay  = () => { can('RESUME') && Bireader.fsm.handle('RESUME') }
@@ -251,23 +256,21 @@ Bireader.section.controls = () => {
     let onMode  = () => { can('MODE') && Bireader.fsm.handle('MODE') }
 
     let click = ".dark-blue"
-
     return m('div',[
-        // mode(),
         m('span'+(can('MODE')&&click),{onclick:onMode},
-            Bireader.data.currMode ? '(A)' : '(M)' ),
+            Bireader.data.currMode ? m('i.fa.fa-bullseye')
+                                   : m('i.fa.fa-hand-paper-o')),
+        m('span.mh3.white.f5','\u00b7'),
+        m('i.fa.fa-play'+(can('RESUME')&&click),{onclick:onPlay}),
 
-        m('span.mh1.f7','\u00b7'),
-        m('span'+(can('RESUME')&&click),{onclick:onPlay},'Play'),
+        m('span.mh3.white.f5','\u00b7'),
+        m('i.fa.fa-pause'+(can('PAUSE')&&click),{onclick:onPause}),
 
-        m('span.mh1.f7','\u00b7'),
-        m('span'+(can('PAUSE')&&click),{onclick:onPause},'Pause'),
+        m('span.mh3.white.f5','\u00b7'),
+        m('i.fa.fa-step-backward'+(canPrev()&&click),{onclick:onPrev}),
 
-        m('span.mh1.f7','\u00b7'),
-        m('span'+(canPrev()&&click),{onclick:onPrev},'Prev'),
-
-        m('span.mh1.f7','\u00b7'),
-        m('span'+(canNext()&&click),{onclick:onNext},'Next'),
+        m('span.mh3.white.f5','\u00b7'),
+        m('i.fa.fa-step-forward'+(canNext()&&click),{onclick:onNext}),
     ])
 }
 
