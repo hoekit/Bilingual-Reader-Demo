@@ -1,0 +1,10 @@
+body { margin:2rem; color:gray; line-height:1.8; font-size:1.5rem; }
+.chapter-number{ font-size:2rem; margin:0; }
+.chapter-title{ font-size:1.5rem; margin:0; }
+.paragraph-start{ margin-left:2rem; }
+.pointed{ color:#000; background-color:#FFFF00; padding:0.2rem 0;
+    border-radius:5px; }
+.src-lang{color:#FFF; background-color:#3687DE; padding:0.2rem 0;
+    border-radius:5px; }
+footer { position:fixed; width:90%; left:0; bottom:0; text-align:right;
+         background-color:#FFF }

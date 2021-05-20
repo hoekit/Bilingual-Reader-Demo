@@ -1,0 +1,11 @@
+.chapter-title {
+  display: block;
+  color: gray;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+footer {
+  width: 100%;
+  text-align:center;
+}

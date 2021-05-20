@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, width=device-width">
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
+
+  <title>Bilingual Book Reader</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tachyons@4.12.0/css/tachyons.min.css">
+  <link rel="stylesheet" href="./app.css">
+  <link rel="stylesheet" href="./bireader.css?v0.0.1">
+  <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mithril@2.0.4/mithril.min.js"></script>
+</head>
+<body>
+  <div id="bireaderBody"></div>
+  <audio id="audioPrev"></audio>
+  <audio id="audioNow"></audio>
+  <audio id="audioNext"></audio>
+</body>
+  <script src="./js/vBireader.js"></script>
+  <script>
+    m.mount(document.getElementById('bireaderBody'), Bireader)
+
+    /* Uncomment for now
+
+    document.getElementById("Ptr").scrollIntoView();
+
+    function clickPrev() {
+        let elPrev = document.querySelector('#prevPtr')
+        if (elPrev) { elPrev.click() }
+    }
+
+    function clickNext() {
+        let elNext = document.querySelector('#nextPtr')
+        if (elNext) { elNext.click() }
+    }
+
+    document.onkeydown = function (event) {
+      switch (event.keyCode) {
+         case 37:
+            clickPrev();    // console.log("Left key is pressed.");
+            break;
+         case 38:
+            break;          // console.log("Up key is pressed.");
+         case 39:
+            clickNext();    // console.log("Right key is pressed.");
+            break;
+         case 40:
+            break;          // console.log("Down key is pressed.");
+      }
+    };
+
+    // Redirect page to sentence that was clicked
+    let mc = new Hammer(document.querySelector('.main'))
+    mc.on('tap', function(e) {
+
+        // Get pointer value in the data-ptr attribute
+        let ptr = e.target.attributes["data-ptr"]
+
+        // Navigate reader to pointer if defined
+        if (typeof ptr !== "undefined") {
+            let url = e.target.attributes["data-ptr"].value
+            Reader.set_ptr(url)
+            m.redraw()
+        }
+    })
+    */
+
+  </script>
+</html>
+
+

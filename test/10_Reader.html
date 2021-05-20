@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reader Tests</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, width=device-width">
+
+  <script src="./testharness.js"></script>
+  <script src="./testharnessreport.js"></script>
+</head>
+<body>
+  <h1>Test Results</h1>
+  <div id="log">If you see this, it means your tests did not run.</div>
+  <hr/>
+
+  <h2>Howto</h2>
+  <p>Download <a href="https://raw.githubusercontent.com/jgraham/testharness.js/master/testharness.js">testharness.js</a> and <a href="https://raw.githubusercontent.com/jgraham/testharness.js/master/testharnessreport.js">testharnessreport.js</a>
+  and place them into the same directory as this HTML file.</p>
+  <p>Then include the JS file you are testing and add tests in the
+  script section.</p>
+</body>
+
+<script src="../js/vReader.js"></script>
+<script>
+  // Helper
+  let is = (got,exp,msg) => test(x => assert_equals(got,exp,msg), msg)
+  let got,exp,msg
+
+  // List the tests
+  is(1,1,'Basic Test')
+  is(typeof(Reader),'object','Reader exists')
+
+  msg = '_render_normal("chapter-number",$str,"0.0.0") returns correct string'
+  got = Reader._render_normal("chapter-number",' /Chapter One',"0.0.0")
+  exp = '\n  <h1 data-ptr="0.0.0" class="chapter-number">Chapter One </h1>\n'
+  is(got,exp,msg)
+
+  msg = '_render_normal("chapter-title",$str,"0.1.0") returns correct string'
+  got = Reader._render_normal('chapter-title',' /A Great One','0.1.0')
+  exp = '\n  <h2 data-ptr="0.1.0" class="chapter-title">A Great One </h2>'
+  is(got,exp,msg)
+
+  msg = '_render_normal("paragraph-start",$str) returns correct string'
+  got = Reader._render_normal('paragraph-start',' /A Great','0.2.0')
+  exp = '\n\n  <br/><span data-ptr="0.2.0" class="paragraph-start">A Great </span>'
+  is(got,exp,msg)
+
+  msg = '_render_normal("",$str,"0.3.0") returns correct string'
+  got = Reader._render_normal('',' /A Great One','0.3.0')
+  exp = '<span data-ptr="0.3.0">A Great One </span>'
+  is(got,exp,msg)
+
+  msg = '_render_pointed("chapter-number","บทที่หนึ่ง /","0.0.0") returns correct string'
+  got = Reader._render_pointed('chapter-number','บทที่หนึ่ง /','0.0.0')
+  exp = '\n  <h1 data-ptr="0.0.0" class="chapter-number"><span id="Ptr" class="pointed"><span class="src-lang">บทที่หนึ่ง </span></span> </h1>\n'
+  is(got,exp,msg)
+
+  msg = '_render_pointed("chapter-number","บทที่ /One","0.0.0") returns correct string'
+  got = Reader._render_pointed('chapter-number','บทที่ /One','0.0.0')
+  exp = '\n  <h1 data-ptr="0.0.0" class="chapter-number"><span id="Ptr" class="pointed"><span class="src-lang">บทที่ </span>One</span> </h1>\n'
+  is(got,exp,msg)
+
+  msg = 'Reader._chapter_dlines() loaded the correct set of lines'
+  got = Reader._chapter_dlines(0).length
+  exp = 6
+  is(got,exp,msg)
+
+  msg = 'Reader.html(ptr) returns correct string'
+  got = Reader.set_ptr('0.0.1').html().length
+  exp = 580
+  is(got,exp,msg)
+
+  msg = 'the_next_ptr Case 1: NOT end of current dlineset'
+  got = Reader.set_ptr('0.0.0').the_next_ptr()
+  exp = '0.0.1'
+  is(got,exp,msg)
+
+  msg = 'the_next_ptr Case 1: NOT end of dlineset'
+  got = Reader.set_ptr('0.5.4').the_next_ptr()
+  exp = '0.5.5'
+  is(got,exp,msg)
+
+  msg = 'the_next_ptr Case 2: End of current dlineset, NOT end of dlines in chapter'
+  got = Reader.set_ptr('0.0.2').the_next_ptr()
+  exp = '0.1.0'
+  is(got,exp,msg)
+
+  msg = 'the_next_ptr Case 3: End of chapter dlineset, NOT end of chapters in book'
+  got = Reader.set_ptr('0.5.5').the_next_ptr()
+  exp = '1.0.0'
+  is(got,exp,msg)
+
+  msg = 'the_next_ptr Case 4: End of book chapters'
+  got = Reader.set_ptr('1.2.6').the_next_ptr()
+  exp = undefined
+  is(got,exp,msg)
+
+  msg = 'the_prev_ptr Case 1: NOT at first Dline in current Dlineset'
+  got = Reader.set_ptr('0.5.4').the_prev_ptr()
+  exp = '0.5.3'
+  is(got,exp,msg)
+
+  msg = 'the_prev_ptr Case 2: At first Dline, curr Dlineset; NOT at first Dlineset in Chapter'
+  got = Reader.set_ptr('0.5.0').the_prev_ptr()
+  exp = '0.4.6'
+  is(got,exp,msg)
+
+  msg = 'the_prev_ptr Case 3: At first Dlineset in Chapter, NOT at first Chapter'
+  got = Reader.set_ptr('1.0.0').the_prev_ptr()
+  exp = '0.5.5'
+  is(got,exp,msg)
+
+  msg = 'the_prev_ptr Case 4: At start of book';
+  got = Reader.set_ptr('0.0.0').the_prev_ptr()
+  exp = undefined
+  is(got,exp,msg)
+
+  // console.log(Reader._chapter_dlines(0))
+  // console.log(Reader._dlineset_at(0,0))
+  // console.log(Reader.html('0.0.1'))
+
+  // See:
+  //   https://www.w3.org/wiki/Harness
+  //   http://darobin.github.io/test-harness-tutorial/docs/using-testharness.html
+</script>
+
+</html>
