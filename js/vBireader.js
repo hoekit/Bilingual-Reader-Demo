@@ -189,6 +189,7 @@ Bireader.section.translation = () => {
     ])
 }
 Bireader.section.controls = () => {
+    let click = ".dark-blue"
 
     // Show Play button on startup
     if (Bireader.fsm.state === 'start') {
@@ -197,14 +198,28 @@ Bireader.section.controls = () => {
                  m('i.fa.fa-play'))
 
     // Show Repeat button on end
+    } else if (Bireader.fsm.state === 'ended') {
+        return [
+            m('i.fa.fa-home'+click,
+                {onclick:() => window.location.href = '/index.html'}),
+            m('span.mh3.white.f5','\u00b7'),
+            m('span.dark-blue',
+                {onclick:() => {Bireader.fsm.handle('FIRST')}},
+                m('i.fa.fa-repeat')),
+        ]
     }
 
     let repeatIcon = () => {
-        if (Bireader.fsm.state === 'ended') {
-            return m('div.dark-blue',
-                     {onclick:() => {Bireader.fsm.handle('FIRST')}},
-                     m('i.fa.fa-repeat'))
-        }
+        return m('span.dark-blue',
+                 {onclick:() => {Bireader.fsm.handle('FIRST')}},
+                 m('i.fa.fa-repeat'))
+    }
+    let modeIcon = () => {
+        return m('span',[
+            m('span'+click,{onclick:onMode},
+                Bireader.data.currMode ? m('i.fa.fa-bullseye')
+                                       : m('i.fa.fa-hand-paper-o')),
+        ])
     }
 
     let can = msg => {
@@ -225,11 +240,9 @@ Bireader.section.controls = () => {
     let onNext  = () => { canNext() && Bireader.fsm.handle('NEXT') }
     let onMode  = () => { Bireader.data.currMode = Bireader.data.currMode ? 0 : 1 }
 
-    let click = ".dark-blue"
     return m('div',[
-        m('span'+click,{onclick:onMode},
-            Bireader.data.currMode ? m('i.fa.fa-bullseye')
-                                   : m('i.fa.fa-hand-paper-o')),
+        modeIcon(),
+
         m('span.mh3.white.f5','\u00b7'),
         m('i.fa.fa-play'+(can('RESUME')&&click),{onclick:onPlay}),
 
