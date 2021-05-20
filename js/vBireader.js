@@ -193,9 +193,14 @@ Bireader.section.controls = () => {
 
     // Show Play button on startup
     if (Bireader.fsm.state === 'start') {
-        return m('div.dark-blue',
-                 {onclick:() => {Bireader.fsm.handle('FIRST')}},
-                 m('i.fa.fa-play'))
+        return [
+            m('i.fa.fa-home'+click,
+                {onclick:() => window.location.href = '/index.html'}),
+            m('span.mh3.white.f5','\u00b7'),
+            m('span.dark-blue',
+                {onclick:() => {Bireader.fsm.handle('FIRST')}},
+                m('i.fa.fa-play')),
+        ]
 
     // Show Repeat button on end
     } else if (Bireader.fsm.state === 'ended') {
