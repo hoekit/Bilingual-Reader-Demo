@@ -210,17 +210,37 @@ Bireader.fsm_onState_ended = (evt,data) => {
 
 // Section Views
 Bireader.section.main = () => {
-    return m('div',Bireader.data.segmentList.map(s => {
+    let text = m('div',Bireader.data.segmentList.map(s => {
         let pointed = s.id === Bireader.data.currIdx ? '.pointed' : ''
         return m('span.'+s.type+pointed,
                  s.text+' ')
     }))
+    let bottom = () => {
+        if (typeof(Bireader.data.segmentList[Bireader.data.currIdx])
+            === 'undefined') {
+            return [
+                m('div.white','trans'),
+                // m('div.white','controls'),
+            ]
+        } else {
+            return [
+                m('div.white',Bireader.data.segmentList[Bireader.data.currIdx].tran),
+                // m('div.white','controls'),
+            ]
+        }
+    }
+    return m('div',[
+        text,
+        bottom(),
+    ])
 }
 Bireader.section.translation = () => {
     // Guard show nothing if no segment selected
     if (Bireader.data.currIdx < 0) { return }
-    return m('div.dark-gray.bg-lightest-blue',
-             Bireader.data.segmentList[Bireader.data.currIdx].tran)
+    return m('div', [
+        m('div.ph2.pt1.dark-gray.bg-lightest-blue',
+             Bireader.data.segmentList[Bireader.data.currIdx].tran),
+    ])
 }
 Bireader.section.controls = () => {
 
@@ -293,6 +313,39 @@ mock.data_segmentList = () => {
             text: 'between whom their father at his death had left what little property he possessed equally divided.',
             tran: 'ซึ่งพ่อของพวกเขาเสียชีวิตได้ทิ้งทรัพย์สินเล็ก ๆ น้อย ๆ ที่เขามีไว้แบ่งเท่า ๆ กัน',
         },
+        // Cassim, however, having married the heiress of a rich
+        // merchant, became soon after his marriage the owner of a fine
+        // shop, together with several pieces of land, and was in
+        // consequence, through no effort of his own, the most
+        // considerable merchant in the town.
+        {   id: 3,
+            type: '',
+            text: 'Cassim, however, having married the heiress of a rich merchant',
+            tran: 'Cassim แต่งงานกับทายาทของพ่อค้าที่ร่ำรวย',
+            start: '00:00:38.56',
+            dura : '00:00:03.86',
+        },
+        {   id: 4,
+            type: '',
+            text: 'became soon after his marriage the owner of a fine shop, together with several pieces of land,',
+            tran: 'ไม่นานหลังจากการแต่งงานของเขาเป็นเจ้าของร้านค้าชั้นดีพร้อมกับที่ดินหลายผืน',
+            start: '00:00:42.34',
+            dura : '00:00:06.40',
+        },
+        {   id: 5,
+            type: '',
+            text: 'and was in consequence, through no effort of his own, the most considerable merchant in the town.',
+            tran: 'และด้วยเหตุนี้พ่อค้าที่สำคัญที่สุดในเมืองโดยไม่ต้องใช้ความพยายาม',
+            start: '00:00:48.80',
+            dura : '00:00:06.93',
+        },
+        /*
+        {   id: ,
+            type: '',
+            text: '',
+            tran: '',
+        },
+        */
     ]
 }
 
