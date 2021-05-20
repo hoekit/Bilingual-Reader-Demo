@@ -220,12 +220,12 @@ Bireader.section.main = () => {
             === 'undefined') {
             return [
                 m('div.white','trans'),
-                // m('div.white','controls'),
+                m('div.white','controls'),
             ]
         } else {
             return [
                 m('div.white',Bireader.data.segmentList[Bireader.data.currIdx].tran),
-                // m('div.white','controls'),
+                m('div.white','controls'),
             ]
         }
     }
