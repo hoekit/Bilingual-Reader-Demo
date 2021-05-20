@@ -45,42 +45,17 @@ Bireader.fsm_mach = () => {
             },
             play: {
                 on: {
-                    AUTO  : 'auto_play',
-                    MANUAL: 'manual_play',
+                    PAUSE : 'paused',      // pause play
+                    NEXT  : 'play',        // play next segment
+                    PREV  : 'play',        // play prev segment
+                    END   : 'ended',       // no more segments
                 }
             },
-            auto_play: {                        // Auto-play mode
+            paused: {
                 on: {
-                    PAUSE : 'paused_auto',      // pause auto-play mode
-                    NEXT  : 'auto_play',        // auto play next segment
-                    PREV  : 'auto_play',        // auto play prev segment
-                    MODE  : 'manual_play',      // Change to manual play mode
-                    END   : 'ended',
-                }
-            },
-            paused_auto: {                      // Paused auto play
-                on: {
-                    RESUME: 'auto_play',        // resume auto-play mode
-                    NEXT  : 'auto_play',        // auto play next segment
-                    PREV  : 'auto_play',        // auto play prev segment
-                    MODE  : 'paused_manual',    // Change to manual pause mode
-                }
-            },
-            manual_play: {                      // Manual play mode
-                on: {
-                    PAUSE : 'paused_manual',    // pause manual play mode
-                    NEXT  : 'manual_play',      // manual play next segment
-                    PREV  : 'manual_play',      // manual play prev segment
-                    MODE  : 'auto_play',        // Change to auto play mode
-                    END   : 'ended',
-                }
-            },
-            paused_manual: {
-                on: {
-                    RESUME: 'manual_play',      // resume manual-play mode
-                    NEXT  : 'manual_play',      // manual play next segment
-                    PREV  : 'manual_play',      // manual play prev segment
-                    MODE  : 'paused_auto',      // Change to auto pause mode
+                    RESUME: 'play',        // resume play
+                    NEXT  : 'play',        // play next segment
+                    PREV  : 'play',        // play prev segment
                 }
             },
             ended: {
@@ -113,6 +88,7 @@ Bireader.fsm_dispatch = () => {
         init         : Bireader.fsm_onState_init,
         start        : Bireader.fsm_onState_start,
         play         : Bireader.fsm_onState_play,
+        paused       : Bireader.fsm_onState_paused,
         auto_play    : Bireader.fsm_onState_auto_play,
         paused_auto  : Bireader.fsm_onState_paused_auto,
         paused_manual: Bireader.fsm_onState_paused_manual,
@@ -125,27 +101,22 @@ Bireader.fsm_onState_start = (evt,data) => {
     console.log('starting in 3, 2, 1 seconds ... ')
 }
 Bireader.fsm_onState_play = (evt,data) => {
-    if (Bireader.data.currMode) {
-        Bireader.fsm.handle('AUTO')
-    } else {
-        Bireader.fsm.handle('MANUAL')
-    }
-}
-Bireader.fsm_onState_auto_play = (evt,data) => {
-    // Auto play the current segment
+    // Play the current segment
     // At the end of it, check whether the next segment exists
-    //   If exist, auto-play the next segment
-    //   Else, stop
+    //   If exist, check the mode
+    //      If mode is AUTO, play NEXT segment
+    //      If mode is MANUAL, PAUSE next segment
+    //   If not exist, end
     console.log(evt,data)
 
-    if (evt.match(/AUTO|MANUAL/)) {
+    if (evt === 'FIRST') {
         Bireader.data.currIdx = 0
     } else if (evt === 'NEXT') {
         Bireader.data.currIdx++
     } else if (evt === 'PREV') {
         Bireader.data.currIdx--
     } else {    // RESUME, MODE
-        Bireader.data.currMode = 1
+        // Bireader.data.currMode = 1
     }
 
     m.redraw()
@@ -158,7 +129,9 @@ Bireader.fsm_onState_auto_play = (evt,data) => {
         let j = Bireader.data.currIdx + 1
         console.log(j , Bireader.data.segmentList.length-1)
         if (j <= Bireader.data.segmentList.length-1) {
-            Bireader.fsm.handle('NEXT')
+            // If AUTO mode (1), send NEXT
+            // if MANUAL mode (0), send PAUSE
+            Bireader.fsm.handle(Bireader.data.currMode ? 'NEXT' : 'PAUSE')
         } else {
             Bireader.fsm.handle('END')
         }
@@ -170,53 +143,10 @@ Bireader.fsm_onState_auto_play = (evt,data) => {
     })
 
 }
-Bireader.fsm_onState_manual_play = (evt,data) => {
-    // Manual play the current segment
-    // At the end of it, stop
-    console.log(evt,data)
-
-    if (evt.match(/AUTO|MANUAL/)) {
-        Bireader.data.currIdx = 0
-    } else if (evt === 'NEXT') {
-        Bireader.data.currIdx++
-    } else if (evt === 'PREV') {
-        Bireader.data.currIdx--
-    } else {    // RESUME, MODE
-        Bireader.data.currMode = 0
-    }
-
-    m.redraw()
-
-    // Setup the audioNow tag and play it
+Bireader.fsm_onState_paused = (evt,data) => {
     let now = document.getElementById('audioNow')
-    now.src = 'audio/'+Bireader.data.currIdx+'.mp3'
-    now.onended = () => {
-        // Check whether next segment exists
-        let j = Bireader.data.currIdx + 1
-        console.log(j , Bireader.data.segmentList.length-1)
-        if (j <= Bireader.data.segmentList.length-1) {
-            Bireader.fsm.handle('PAUSE')
-        } else {
-            Bireader.fsm.handle('END')
-        }
-    }
-    now.play()
-    .then(res => {
-        console.log('Playing segment:' + Bireader.data.currIdx)
-    })
-
-}
-Bireader.fsm_onState_paused_auto = (evt,data) => {
-    let now = document.getElementById('audioNow')
-    Bireader.data.currMode = 1
     now.pause()
-    console.log('Paused auto play')
-}
-Bireader.fsm_onState_paused_manual = (evt,data) => {
-    let now = document.getElementById('audioNow')
-    Bireader.data.currMode = 0
-    now.pause()
-    console.log('Paused manual play')
+    console.log('Paused audio play')
 }
 Bireader.fsm_onState_ended = (evt,data) => {
     console.log('ended')
@@ -267,10 +197,14 @@ Bireader.section.controls = () => {
                  m('i.fa.fa-play'))
 
     // Show Repeat button on end
-    } else if (Bireader.fsm.state === 'ended') {
-        return m('div.dark-blue',
-                 {onclick:() => {Bireader.fsm.handle('FIRST')}},
-                 m('i.fa.fa-repeat'))
+    }
+
+    let repeatIcon = () => {
+        if (Bireader.fsm.state === 'ended') {
+            return m('div.dark-blue',
+                     {onclick:() => {Bireader.fsm.handle('FIRST')}},
+                     m('i.fa.fa-repeat'))
+        }
     }
 
     let can = msg => {
@@ -289,11 +223,11 @@ Bireader.section.controls = () => {
     let onPlay  = () => { can('RESUME') && Bireader.fsm.handle('RESUME') }
     let onPrev  = () => { canPrev() && Bireader.fsm.handle('PREV') }
     let onNext  = () => { canNext() && Bireader.fsm.handle('NEXT') }
-    let onMode  = () => { can('MODE') && Bireader.fsm.handle('MODE') }
+    let onMode  = () => { Bireader.data.currMode = Bireader.data.currMode ? 0 : 1 }
 
     let click = ".dark-blue"
     return m('div',[
-        m('span'+(can('MODE')&&click),{onclick:onMode},
+        m('span'+click,{onclick:onMode},
             Bireader.data.currMode ? m('i.fa.fa-bullseye')
                                    : m('i.fa.fa-hand-paper-o')),
         m('span.mh3.white.f5','\u00b7'),
