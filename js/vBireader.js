@@ -136,11 +136,18 @@ Bireader.fsm_onState_play = (evt,data) => {
             Bireader.fsm.handle('END')
         }
     }
-    now.src = 'audio/'+Bireader.data.currIdx+'.mp3'
+    now.src = Bireader.data.segmentList[Bireader.data.currIdx].src
     now.play()
     .then(res => {
         console.log('Playing segment:' + Bireader.data.currIdx)
     })
+
+    // Preload next segment into audioNext
+    if (Bireader.data.currIdx+1 < Bireader.data.segmentList.length) {
+        let next = document.getElementById('audioNext')
+        next.src = Bireader.data.segmentList[Bireader.data.currIdx+1].src
+        next.preload = true
+    }
 
 }
 Bireader.fsm_onState_paused = (evt,data) => {
@@ -270,16 +277,19 @@ mock.data_segmentList = () => {
             type: 'chapter-title',
             text: 'Alibaba and The Forty Thieves',
             tran: 'Alibaba และสี่สิบหัวขโมย',
+            src : 'audio/0.mp3'
         },
         {   id: 1,
             type: 'paragraph-start',
             text: 'In a town in Persia lived two brothers named Cassim and Alibaba,',
             tran: 'ในเมืองแห่งหนึ่งในเปอร์เซียอาศัยอยู่สองพี่น้องชื่อ Cassim และ Alibaba',
+            src : 'audio/1.mp3'
         },
         {   id: 2,
             type: '',
             text: 'between whom their father at his death had left what little property he possessed equally divided.',
             tran: 'ซึ่งพ่อของพวกเขาเสียชีวิตได้ทิ้งทรัพย์สินเล็ก ๆ น้อย ๆ ที่เขามีไว้แบ่งเท่า ๆ กัน',
+            src : 'audio/2.mp3'
         },
         // Cassim, however, having married the heiress of a rich
         // merchant, became soon after his marriage the owner of a fine
@@ -292,6 +302,7 @@ mock.data_segmentList = () => {
             tran: 'Cassim แต่งงานกับทายาทของพ่อค้าที่ร่ำรวย',
             start: '00:00:38.56',
             dura : '00:00:03.86',
+            src  : 'audio/3.mp3'
         },
         {   id: 4,
             type: '',
@@ -299,6 +310,7 @@ mock.data_segmentList = () => {
             tran: 'ไม่นานหลังจากการแต่งงานของเขาเป็นเจ้าของร้านค้าชั้นดีพร้อมกับที่ดินหลายผืน',
             start: '00:00:42.34',
             dura : '00:00:06.40',
+            src  : 'audio/4.mp3'
         },
         {   id: 5,
             type: '',
@@ -306,6 +318,7 @@ mock.data_segmentList = () => {
             tran: 'และด้วยเหตุนี้พ่อค้าที่สำคัญที่สุดในเมืองโดยไม่ต้องใช้ความพยายาม',
             start: '00:00:48.80',
             dura : '00:00:06.93',
+            src  : 'audio/5.mp3'
         },
         // Alibaba, on the other hand, was married to one as poor as himself, and having no other means of gaining a livelihood he used to go every day into the forest to cut wood, and lading therewith the three asses which were his sole stock-in-trade, would then hawk it about the streets for sale.
         {   id: 6,
@@ -314,6 +327,7 @@ mock.data_segmentList = () => {
             tran: 'ในทางกลับกัน Alibaba ได้แต่งงานกับคนยากจนเช่นเดียวกับตัวเขาเอง',
             start: '00:00:56.08',
             dura : '00:00:04.82',
+            src  : 'audio/6.mp3'
         },
         {   id: 7,
             type: '',
@@ -321,6 +335,7 @@ mock.data_segmentList = () => {
             tran: 'และไม่มีหนทางอื่นในการหาเลี้ยงชีพเขาต้องเข้าไปในป่าทุกวันเพื่อตัดฟืน',
             start: '00:01:00.84',
             dura : '00:00:07.06',
+            src  : 'audio/7.mp3'
         },
         {   id: 8,
             type: 'paragraph-stop',
@@ -328,6 +343,7 @@ mock.data_segmentList = () => {
             tran: 'และบรรทุกลาสามตัวซึ่งเป็นสมบัติอันน้อยนิดของเขา จากนั้นก็จะเร่ขายไปตามท้องถนน',
             start: '00:01:07.92',
             dura : '00:00:08.49',
+            src  : 'audio/8.mp3'
         },
         /*
         {   id: ,
@@ -336,6 +352,7 @@ mock.data_segmentList = () => {
             tran: '',
             start: '00:00:',
             dura : '00:00:',
+            src  : 'audio/.mp3'
         },
         */
     ]
