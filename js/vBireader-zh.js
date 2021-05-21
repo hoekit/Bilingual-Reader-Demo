@@ -195,7 +195,7 @@ Bireader.section.controls = () => {
     if (Bireader.fsm.state === 'start') {
         return [
             m('i.fa.fa-home'+click,
-                {onclick:() => window.location.href = '/index.html'}),
+                {onclick:() => window.location.href = './index.html'}),
             m('span.mh3.white.f5','\u00b7'),
             m('span.dark-blue',
                 {onclick:() => {Bireader.fsm.handle('FIRST')}},
