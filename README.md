@@ -1,10 +1,16 @@
-# Book-Reader-Demo
-A simple [demo](https://hoekit.github.io/Book-Reader-Demo/) for a Bilingual Book Reader
+# Bilingual-Audio-Book-Reader-Demo
+A simple [demo](https://hoekit.github.io/Bilingual-Book-Reader-Demo/) for a Bilingual Audio Book Reader
+
+# Use Case
+- Suitable for learning a second language
 
 # Features
-- Tap on a sentence to "point" to it
-- Easy navigation via Prev, Next at the bottom
+- Original text is read out one segment at a time
+- Segment currently being read is **highlighted**
+- Translations for the currently read segment is shown
+- Switch between auto-advance mode or manual-advance mode
+- Easy navigation to play, pause, step-forward/backwards and change mode
 
 # TODO
-- Audiobooks are better to practice listening
-- Show translations at the bottom like subtitles.
+- Add ability to touch a segment to play it
+- Do a fuller translation
