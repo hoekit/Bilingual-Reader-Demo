@@ -191,7 +191,7 @@ Bireader.section.translation = () => {
     // Guard show nothing if no segment selected
     if (Bireader.data.currIdx < 0) { return }
     return m('div', [
-        m('div.ph2.pt1.dark-gray.bg-lightest-blue',
+        m('div.ph2.pt1.black.bg-lightest-blue',
              Bireader.data.segmentList[Bireader.data.currIdx].tran),
     ])
 }
@@ -271,7 +271,7 @@ Bireader.section.controls = () => {
 
 
 // Mock Data
-mock.data_segmentList = () => {
+mock.data_segmentList_alibaba = () => {
     return [
         {   id: 0,
             type: 'chapter-title',
@@ -357,7 +357,162 @@ mock.data_segmentList = () => {
         */
     ]
 }
-
+mock.data_segmentList_alibaba_zh = () => {
+    return [
+        {   id: 0,
+            type: 'chapter-title',
+            text: 'Alibaba and The Forty Thieves',
+            tran: '阿里巴巴和四十个小偷',
+            src : 'audio/0.mp3'
+        },
+        {   id: 1,
+            type: 'paragraph-start',
+            text: 'In a town in Persia lived two brothers named Cassim and Alibaba,',
+            tran: '在波斯的一个城镇里，有两个兄弟，分别叫卡西姆（Cassim）和阿里巴巴（Alibaba),',
+            src : 'audio/1.mp3'
+        },
+        {   id: 2,
+            type: '',
+            text: 'between whom their father at his death had left what little property he possessed equally divided.',
+            tran: '他们父亲去世时，他所拥有的几乎所有财产几乎都分配给他们之间。',
+            src : 'audio/2.mp3'
+        },
+        // Cassim, however, having married the heiress of a rich
+        // merchant, became soon after his marriage the owner of a fine
+        // shop, together with several pieces of land, and was in
+        // consequence, through no effort of his own, the most
+        // considerable merchant in the town.
+        {   id: 3,
+            type: '',
+            text: 'Cassim, however, having married the heiress of a rich merchant',
+            tran: '卡西姆（Cassim）然而嫁给了一位富商的女继承人',
+            start: '00:00:38.56',
+            dura : '00:00:03.86',
+            src : 'audio/3.mp3'
+        },
+        {   id: 4,
+            type: '',
+            text: 'became soon after his marriage the owner of a fine shop, together with several pieces of land,',
+            tran: '结婚后不久成为一家高级商店以及几块土地的所有者,',
+            start: '00:00:42.34',
+            dura : '00:00:06.40',
+            src : 'audio/4.mp3'
+        },
+        {   id: 5,
+            type: '',
+            text: 'and was in consequence, through no effort of his own, the most considerable merchant in the town.',
+            tran: '结果，他自己全力以赴，成为了镇上最重要的商人。',
+            start: '00:00:48.80',
+            dura : '00:00:06.93',
+            src : 'audio/5.mp3'
+        },
+        // Alibaba, on the other hand, was married to one as poor as himself, and having no other means of gaining a livelihood he used to go every day into the forest to cut wood, and lading therewith the three asses which were his sole stock-in-trade, would then hawk it about the streets for sale.
+        {   id: 6,
+            type: '',
+            text: 'Alibaba, on the other hand, was married to one as poor as himself,',
+            tran: '另一方面，阿里巴巴嫁给了一个和自己一样穷的人，',
+            start: '00:00:56.08',
+            dura : '00:00:04.82',
+            src : 'audio/6.mp3'
+        },
+        {   id: 7,
+            type: '',
+            text: 'and having no other means of gaining a livelihood he used to go every day into the forest to cut wood,',
+            tran: '他没有其他谋生手段，他以前每天都去森林砍伐木材,',
+            start: '00:01:00.84',
+            dura : '00:00:07.06',
+            src : 'audio/7.mp3'
+        },
+        {   id: 8,
+            type: 'paragraph-stop',
+            text: 'and lading therewith the three asses which were his sole stock-in-trade, would then hawk it about the streets for sale.',
+            tran: '然后与这三个驴子一起装货，这是他唯一的存货，然后将其贩卖到街上待售。',
+            start: '00:01:07.92',
+            dura : '00:00:08.49',
+            src : 'audio/8.mp3'
+        },
+        /*
+        {   id: ,
+            type: '',
+            text: '',
+            tran: '',
+            start: '00:00:',
+            dura : '00:00:',
+        },
+        */
+    ]
+}
+mock.data_segmentList_chat = () => {
+    return [
+        {   id: 0,
+            type: 'chapter-title',
+            text: 'Conversation One',
+            tran: 'การสนทนาที่หนึ่ง',
+            src : 'audio/c0.mp3'
+        },
+        {   id: 1,
+            type: 'speaker-one',
+            text: 'I like your family photos. Who is this?',
+            tran: 'ฉันชอบรูปครอบครัวของคุณ นี่คือใคร',
+            src : 'audio/c1.mp3'
+        },
+        {   id: 2,
+            type: 'speaker-two',
+            text: 'That is my dad. He is a doctor.',
+            tran: 'นั่นคือพ่อของฉัน เขาเป็นหมอ',
+            src : 'audio/c2.mp3'
+        },
+        // Cassim, however, having married the heiress of a rich
+        // merchant, became soon after his marriage the owner of a fine
+        // shop, together with several pieces of land, and was in
+        // consequence, through no effort of his own, the most
+        // considerable merchant in the town.
+        {   id: 3,
+            type: 'speaker-one',
+            text: 'Wow. He is very tall',
+            tran: 'ว้าว เขาตัวสูงมาก',
+            src  : 'audio/c3.mp3'
+        },
+        {   id: 4,
+            type: 'speaker-two',
+            text: 'Yes, he is',
+            tran: 'ใช่',
+            src : 'audio/c4.mp3'
+        },
+        {   id: 5,
+            type: 'speaker-one',
+            text: 'Is this your mom?',
+            tran: 'นี่แม่ของคุณเหรอ',
+            src : 'audio/c5.mp3'
+        },
+        // Alibaba, on the other hand, was married to one as poor as himself, and having no other means of gaining a livelihood he used to go every day into the forest to cut wood, and lading therewith the three asses which were his sole stock-in-trade, would then hawk it about the streets for sale.
+        {   id: 6,
+            type: '',
+            type: 'speaker-two',
+            text: 'Yes, she is a doctor too.',
+            tran: 'ใช่ เธอเป็นหมอด้วย',
+            src : 'audio/c6.mp3'
+        },
+        {   id: 7,
+            type: 'speaker-one',
+            text: 'Wow, smart family.',
+            tran: 'ว้าวครอบครัวที่ฉลาด',
+            src  : 'audio/c7.mp3'
+        },
+        /*
+        {   id: ,
+            type: '',
+            text: '',
+            tran: '',
+            src : 'audio/.mp3'
+        },
+        */
+    ]
+}
+const params = new URLSearchParams(window.location.search);
+const page = params.get("page") || 'alibaba'
+console.log(page)
+mock.data_segmentList = mock['data_segmentList_'+page]
 
 // Setup before start
 Bireader.data = Bireader.data_init()
