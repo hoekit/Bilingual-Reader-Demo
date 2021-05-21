@@ -3,9 +3,32 @@ body { margin:2rem; color:gray; line-height:1.8; font-size:1.5rem; }
 .chapter-title{ margin:0; display: block; font-weight: bold; font-size:1.5rem;
                 color: gray; }
 .paragraph-start{ margin-left:2rem; }
-.pointed{ color:#000; background-color:#FFFF00; padding:0.2rem 0;
-          border-radius:5px; }
 .src-lang{ color:#FFF; background-color:#3687DE; padding:0.2rem 0;
            border-radius:5px; }
 footer { position:fixed; width:100%; left:0; bottom:0; text-align:center;
          background-color:#FFF }
+.speaker-one {
+  display:block;
+  width:80%;
+  margin-right:20%;
+  margin-top:1rem;
+  padding:0% 2%;
+  background-color:#E8FDF5;
+  border-radius: .5rem;
+}
+.speaker-two {
+  display:block;
+  width:80%;
+  margin-left:20%;
+  margin-top: 1rem;
+  padding:0% 2%;
+  background-color:#CDECFF;
+  border-radius: .5rem;
+}
+.pointed{
+  color:#000;
+  background-color:#FFFF00;
+  padding:2% 2%;
+  border-radius:5px;
+}
+
