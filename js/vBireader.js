@@ -323,7 +323,7 @@ mock.data_segmentList = () => {
             dura : '00:00:07.06',
         },
         {   id: 8,
-            type: 'paragraph-stop'
+            type: 'paragraph-stop',
             text: 'and lading therewith the three asses which were his sole stock-in-trade, would then hawk it about the streets for sale.',
             tran: 'และบรรทุกลาสามตัวซึ่งเป็นสมบัติอันน้อยนิดของเขา จากนั้นก็จะเร่ขายไปตามท้องถนน',
             start: '00:01:07.92',
