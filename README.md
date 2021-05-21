@@ -1,5 +1,5 @@
 # Bilingual-Audio-Book-Reader-Demo
-A simple [demo](https://hoekit.github.io/Bilingual-Book-Reader-Demo/) for a Bilingual Audio Book Reader
+A simple [demo](https://hoekit.github.io/Bilingual-Reader-Demo/) for a Bilingual Audio Book Reader
 
 # Use Case
 - Suitable for learning a second language
