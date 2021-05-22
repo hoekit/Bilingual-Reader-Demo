@@ -509,6 +509,72 @@ mock.data_segmentList_chat = () => {
         */
     ]
 }
+mock.data_segmentList_sanzijing = () => {
+    return [
+        {   id: 0,
+            type: 'chapter-title',
+            text: '三 字 经',
+            tran: 'sān zì jīnɡ - Three Character Classic',
+            src : 'audio/szj0.mp3'
+        },
+        {   id: 1,
+            type: 'speaker-one',
+            text: '人 之 初 , 性 本 善 。',
+            tran: 'rén zhī chū , xìnɡ běn shàn 。Men at their birth are naturally good.',
+            src : 'audio/szj1.mp3'
+        },
+        {   id: 2,
+            type: 'speaker-two',
+            text: '性 相 近 , 习 相 远 。',
+            tran: 'xìnɡ xiānɡ jìn , xí xiānɡ yuǎn 。Their natures are much the same; their habits become widely different.',
+            src : 'audio/szj2.mp3'
+        },
+        {   id: 3,
+            type: 'speaker-one',
+            text: '苟 不 教 , 性 乃 迁 。',
+            tran: 'ɡǒu bù jiāo , xìnɡ nǎi qiān 。If foolishly there is no teaching, the nature will deteriorate.',
+            src  : 'audio/szj3.mp3'
+        },
+        {   id: 4,
+            type: 'speaker-two',
+            text: '教 之 道 , 贵 以 专 。',
+            tran: 'jiāo zhī dào , ɡuì yǐ zhuān 。The right way in teaching, is to attach the utmost importance to thoroughness.',
+            src : 'audio/szj4.mp3'
+        },
+        {   id: 5,
+            type: 'speaker-one',
+            text: '昔 孟 母 , 择 邻 处 。',
+            tran: 'xī mènɡ mǔ , zé lín chù 。Of old, the mother of Mencius chose a neighbourhood;',
+            src : 'audio/szj5.mp3'
+        },
+        {   id: 6,
+            type: 'speaker-two',
+            text: '子 不 学 , 断 机 杼 。',
+            tran: 'zǐ bù xué , duàn jī zhù 。and when her child would not learn, she broke the shuttle from the loom.',
+            src : 'audio/szj6.mp3'
+        },
+        {   id: 7,
+            type: 'speaker-one',
+            text: '窦 燕 山 , 有 义 方 。',
+            tran: 'dòu yàn shān , yǒu yì fānɡ 。Tou of the Swallow Hills had the right method.',
+            src  : 'audio/szj7.mp3'
+        },
+        {   id: 8,
+            type: 'speaker-two',
+            text: '教 五 子 , 名 俱 扬 。',
+            tran: 'jiāo wǔ zǐ , mínɡ jù yánɡ 。He taught five sons, each of whom raised the family reputation.',
+            src : 'audio/szj8.mp3'
+        },
+        /*
+        {   id: ,
+            type: '',
+            text: '',
+            tran: '',
+            src : 'audio/.mp3'
+        },
+        */
+    ]
+}
 const params = new URLSearchParams(window.location.search);
 const page = params.get("page") || 'alibaba'
 console.log(page)
