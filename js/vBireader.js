@@ -354,7 +354,7 @@ mock.data_segmentList_alibaba = () => {
         {   id: 11,
             type: '',
             text: 'and fearing from their appearance that they might be robbers,',
-            tran: 'และกลัวจากรูปลักษณ์ของพวกเขาว่าพวกเขาอาจเป็นโจรเขาจึงวิ่งไป',
+            tran: 'และกลัวจากรูปลักษณ์ของพวกเขาว่าพวกเขาอาจเป็นโจร',
             start: '00:00:',
             dura : '00:00:',
             src  : 'audio/11.mp3'
