@@ -291,11 +291,6 @@ mock.data_segmentList_alibaba = () => {
             tran: 'ซึ่งพ่อของพวกเขาเสียชีวิตได้ทิ้งทรัพย์สินเล็ก ๆ น้อย ๆ ที่เขามีไว้แบ่งเท่า ๆ กัน',
             src : 'audio/2.mp3'
         },
-        // Cassim, however, having married the heiress of a rich
-        // merchant, became soon after his marriage the owner of a fine
-        // shop, together with several pieces of land, and was in
-        // consequence, through no effort of his own, the most
-        // considerable merchant in the town.
         {   id: 3,
             type: '',
             text: 'Cassim, however, having married the heiress of a rich merchant',
@@ -320,7 +315,6 @@ mock.data_segmentList_alibaba = () => {
             dura : '00:00:06.93',
             src  : 'audio/5.mp3'
         },
-        // Alibaba, on the other hand, was married to one as poor as himself, and having no other means of gaining a livelihood he used to go every day into the forest to cut wood, and lading therewith the three asses which were his sole stock-in-trade, would then hawk it about the streets for sale.
         {   id: 6,
             type: '',
             text: 'Alibaba, on the other hand, was married to one as poor as himself,',
@@ -344,6 +338,49 @@ mock.data_segmentList_alibaba = () => {
             start: '00:01:07.92',
             dura : '00:00:08.49',
             src  : 'audio/8.mp3'
+        },
+            type: 'paragraph-start',
+            text: 'One day while he was at work within the skirts of the forest,',
+            tran: 'วันหนึ่งขณะที่เขาทำงานอยู่ริมป่า',
+            src  : 'audio/9.mp3'
+        },
+        {   id: 10,
+            type: '',
+            text: 'Ali Baba saw advancing towards him across the open a large company of horsemen,',
+            tran: 'อาลีบาบาเห็นนักขี่ม้ากลุ่มใหญ่กำลังขี่เข้ามาหาเขา',
+            src  : 'audio/10.mp3'
+        },
+        {   id: 11,
+            type: '',
+            text: 'and fearing from their appearance that they might be robbers,',
+            tran: 'และกลัวจากรูปลักษณ์ของพวกเขาว่าพวกเขาอาจเป็นโจรเขาจึงวิ่งไป',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/11.mp3'
+        },
+        {   id: 12,
+            type: '',
+            text: 'he left his asses to their own devices',
+            tran: 'เขาปล่อยให้ลาดูแลตัวเอง',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/12.mp3'
+        },
+        {   id: 13,
+            type: '',
+            text: 'and sought safety for himself in the lower branches of a large tree',
+            tran: 'และหาความปลอดภัยเพื่อตัวเขาเองในกิ่งล่างของต้นไม้ใหญ่',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/13.mp3'
+        },
+        {   id: 14,
+            type: 'paragraph-stop',
+            text: 'which grew in the close overshadowing of a precipitous rock.',
+            tran: 'ซึ่งเติบโตในเงามืดของหินที่สูงชันมาก',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/14.mp3'
         },
         /*
         {   id: ,
