@@ -40,7 +40,8 @@ Bireader.fsm_mach = () => {
             },
             start: {
                 on: {
-                    FIRST: 'play'
+                    FIRST: 'play',
+                    JUMP : 'play',
                 }
             },
             play: {
@@ -49,6 +50,7 @@ Bireader.fsm_mach = () => {
                     NEXT  : 'play',        // play next segment
                     PREV  : 'play',        // play prev segment
                     END   : 'ended',       // no more segments
+                    JUMP  : 'play',
                 }
             },
             paused: {
@@ -56,11 +58,13 @@ Bireader.fsm_mach = () => {
                     RESUME: 'play',        // resume play
                     NEXT  : 'play',        // play next segment
                     PREV  : 'play',        // play prev segment
+                    JUMP  : 'play',
                 }
             },
             ended: {
                 on: {
-                    FIRST: 'play'
+                    FIRST: 'play',
+                    JUMP : 'play',
                 }
             },
         },
@@ -100,6 +104,7 @@ Bireader.fsm_onState_start = (evt,data) => {
     Bireader.data.currIdx  = 0,
     console.log('starting in 3, 2, 1 seconds ... ')
 }
+
 Bireader.fsm_onState_play = (evt,data) => {
     // Play the current segment
     // At the end of it, check whether the next segment exists
@@ -115,8 +120,18 @@ Bireader.fsm_onState_play = (evt,data) => {
         Bireader.data.currIdx++
     } else if (evt === 'PREV') {
         Bireader.data.currIdx--
+    } else if (evt === 'JUMP') {
+        Bireader.data.currIdx = Number(data)
     } else {    // RESUME, MODE
         // Bireader.data.currMode = 1
+    }
+
+    let ptd = document.querySelector(                   // Find target segment
+            '[data-ptr="'+Bireader.data.currIdx+'"]')
+    if (ptd) {                                          // If found
+        ptd.scrollIntoView({                            //   scroll segment
+            behaviour:"smooth",                         //   smoothly into view
+            block:"center"})                            //   to the center
     }
 
     m.redraw()
@@ -125,8 +140,9 @@ Bireader.fsm_onState_play = (evt,data) => {
     // Setup the audioNow tag and play it
     let now = document.getElementById('audioNow')
     now.onended = () => {
+        m.redraw()
         // Check whether next segment exists
-        let j = Bireader.data.currIdx + 1
+        let j = Number(Bireader.data.currIdx) + 1
         console.log(j , Bireader.data.segmentList.length-1)
         if (j <= Bireader.data.segmentList.length-1) {
             // If AUTO mode (1), send NEXT
@@ -160,12 +176,12 @@ Bireader.fsm_onState_ended = (evt,data) => {
     m.redraw()
 }
 
-
 // Section Views
 Bireader.section.main = () => {
-    let text = m('div',Bireader.data.segmentList.map(s => {
+    let text = m('div.main',Bireader.data.segmentList.map(s => {
         let pointed = s.id === Bireader.data.currIdx ? '.pointed' : ''
         return m('span.'+s.type+pointed,
+                {'data-ptr': s.id},
                  s.text+' ')
     }))
     let bottom = () => {
@@ -268,7 +284,6 @@ Bireader.section.controls = () => {
         m('i.fa.fa-step-forward'+(canNext()&&click),{onclick:onNext}),
     ])
 }
-
 
 // Mock Data
 mock.data_segmentList_alibaba = () => {
@@ -438,6 +453,46 @@ mock.data_segmentList_alibaba = () => {
             start: '00:00:',
             dura : '00:00:',
             src  : 'audio/21.mp3'
+        },
+        {   id: 22,
+            type: 'paragraph-start',
+            text: 'Just as he had done so, the one nearest to him, who seemed to be their chief,',
+            tran: '',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/22.mp3'
+        },
+        {   id: 23,
+            type: '',
+            text: 'advanced toward the rock, and in a low but distinct voice uttered the two words,',
+            tran: '',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/23.mp3'
+        },
+        {   id: 24,
+            type: '',
+            text: '"Open, Sesamé!"',
+            tran: '',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/24.mp3'
+        },
+        {   id: 25,
+            type: '',
+            text: 'Immediately the rock opened like a door,',
+            tran: '',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/25.mp3'
+        },
+        {   id: 26,
+            type: 'paragraph-stop',
+            text: 'the captain and his men passed in, and the rock closed behind them.',
+            tran: '',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/26.mp3'
         },
         /*
         {   id: ,

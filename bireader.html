@@ -25,9 +25,21 @@
   <script>
     m.mount(document.getElementById('bireaderBody'), Bireader)
 
-    /* Uncomment for now
+    // Redirect page to sentence that was clicked
+    let mc = new Hammer(document.querySelector('.main'))
+    mc.on('tap', function(e) {
 
-    document.getElementById("Ptr").scrollIntoView();
+        // Get pointer value in the data-ptr attribute
+        let ptr = e.target.attributes["data-ptr"]
+
+        // Navigate reader to pointer if defined
+        if (typeof ptr !== "undefined") {
+            Bireader.fsm_handle('JUMP',ptr.value)
+        }
+    })
+
+
+    /* Commented out for now
 
     function clickPrev() {
         let elPrev = document.querySelector('#prevPtr')
@@ -54,20 +66,6 @@
       }
     };
 
-    // Redirect page to sentence that was clicked
-    let mc = new Hammer(document.querySelector('.main'))
-    mc.on('tap', function(e) {
-
-        // Get pointer value in the data-ptr attribute
-        let ptr = e.target.attributes["data-ptr"]
-
-        // Navigate reader to pointer if defined
-        if (typeof ptr !== "undefined") {
-            let url = e.target.attributes["data-ptr"].value
-            Reader.set_ptr(url)
-            m.redraw()
-        }
-    })
     */
 
   </script>

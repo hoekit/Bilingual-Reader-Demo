@@ -10,6 +10,8 @@ A simple [demo](https://hoekit.github.io/Bilingual-Reader-Demo/) for a Bilingual
 - Translations for the currently read segment is shown
 - Switch between auto-advance mode or manual-advance mode
 - Easy navigation to play, pause, step-forward/backwards and change mode
+- Tap on a segment to play it
+- Text auto-scroll
 - Can handle different styles e.g. book or short conversations
 
 # TODO
