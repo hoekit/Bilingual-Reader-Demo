@@ -843,6 +843,53 @@ mock.data_segmentList_chat3 = () => {
         },
     ]
 }
+mock.data_segmentList_chat4 = () => {
+    return [
+        {   id: 0,
+            type: 'chapter-title',
+            text: 'Conversation Four',
+            tran: 'การสนทนาที่สี่',
+            src : 'audio/c4_0.mp3',
+        },
+        {   id: 1,
+            type: 'speaker-one',
+            text: 'And who are these people?',
+            tran: 'แล้วคนเหล่านี้คือใคร',
+            src : 'audio/c4_1.mp3',
+            image: 'img/c4.png',
+        },
+        {   id: 2,
+            type: 'speaker-two',
+            text: 'Those are my grandparents.',
+            tran: 'นั่นคือปู่ย่าตายายของฉัน',
+            src : 'audio/c4_2.mp3',
+        },
+        {   id: 3,
+            type: 'speaker-one',
+            text: 'Oh, do they live in town?',
+            tran: 'โอ้พวกเขาอาศัยอยู่ในเมืองหรือไม่',
+            src  : 'audio/c4_3.mp3',
+        },
+        {   id: 4,
+            type: 'speaker-two',
+            text: 'No, they live in the country. They have a farm.',
+            tran: 'ไม่พวกเขาอาศัยอยู่ในชนบท พวกเขามีฟาร์ม',
+            src : 'audio/c4_4.mp3'
+        },
+        {   id: 5,
+            type: 'speaker-one',
+            text: 'How nice!',
+            tran: 'ดีแค่ไหน!',
+            src : 'audio/c4_5.mp3'
+        },
+        {   id: 6,
+            type: 'speaker-two',
+            text: 'Yeah, I go there often.',
+            tran: 'ใช่ฉันไปที่นั่นบ่อย',
+            src : 'audio/c4_6.mp3'
+        },
+    ]
+}
 mock.data_segmentList_sanzijing = () => {
     return [
         {   id: 0,
