@@ -192,7 +192,7 @@ Bireader.section.main = () => {
                  s.text+' ')
 
         let seg2 = [
-            m('img', {src:s.image}),
+            m('img.mv2.br3', {src:s.image}),
             m('span.'+s.type+pointed,
                 {'data-ptr': s.id},
                  s.text+' ')
@@ -692,30 +692,26 @@ mock.data_segmentList_chat = () => {
             type: 'chapter-title',
             text: 'Conversation One',
             tran: 'การสนทนาที่หนึ่ง',
-            src : 'audio/c0.mp3'
+            src : 'audio/c0.mp3',
         },
         {   id: 1,
             type: 'speaker-one',
             text: 'I like your family photos. Who is this?',
             tran: 'ฉันชอบรูปครอบครัวของคุณ นี่คือใคร',
-            src : 'audio/c1.mp3'
+            src : 'audio/c1.mp3',
+            image: 'img/c1.png',
         },
         {   id: 2,
             type: 'speaker-two',
             text: 'That is my dad. He is a doctor.',
             tran: 'นั่นคือพ่อของฉัน เขาเป็นหมอ',
-            src : 'audio/c2.mp3'
+            src : 'audio/c2.mp3',
         },
-        // Cassim, however, having married the heiress of a rich
-        // merchant, became soon after his marriage the owner of a fine
-        // shop, together with several pieces of land, and was in
-        // consequence, through no effort of his own, the most
-        // considerable merchant in the town.
         {   id: 3,
             type: 'speaker-one',
             text: 'Wow. He is very tall',
             tran: 'ว้าว เขาตัวสูงมาก',
-            src  : 'audio/c3.mp3'
+            src  : 'audio/c3.mp3',
         },
         {   id: 4,
             type: 'speaker-two',
