@@ -796,6 +796,53 @@ mock.data_segmentList_chat2 = () => {
         },
     ]
 }
+mock.data_segmentList_chat3 = () => {
+    return [
+        {   id: 0,
+            type: 'chapter-title',
+            text: 'Conversation Three',
+            tran: 'การสนทนาที่สาม',
+            src : 'audio/c3_0.mp3',
+        },
+        {   id: 1,
+            type: 'speaker-one',
+            text: 'Who are the people in this picture?',
+            tran: 'คนในภาพนี้คือใคร?',
+            src : 'audio/c3_1.mp3',
+            image: 'img/c3.png',
+        },
+        {   id: 2,
+            type: 'speaker-two',
+            text: 'That is my older brother and younger sister.',
+            tran: 'นั่นคือพี่ชายและน้องสาวของฉัน',
+            src : 'audio/c3_2.mp3',
+        },
+        {   id: 3,
+            type: 'speaker-one',
+            text: 'Oh, what do they do?',
+            tran: 'โอ้พวกเขาทำอะไร?',
+            src  : 'audio/c3_3.mp3',
+        },
+        {   id: 4,
+            type: 'speaker-two',
+            text: 'My sister is a pilot. My brother is a farmer.',
+            tran: 'พี่สาวของฉันเป็นนักบิน พี่ชายของฉันเป็นชาวนา',
+            src : 'audio/c3_4.mp3'
+        },
+        {   id: 5,
+            type: 'speaker-one',
+            text: 'Wow. They have cool jobs.',
+            tran: 'ว้าว. พวกเขามีงานเจ๋ง ๆ',
+            src : 'audio/c3_5.mp3'
+        },
+        {   id: 6,
+            type: 'speaker-two',
+            text: 'Yeah, they do!',
+            tran: 'ใช่!',
+            src : 'audio/c3_6.mp3'
+        },
+    ]
+}
 mock.data_segmentList_sanzijing = () => {
     return [
         {   id: 0,
