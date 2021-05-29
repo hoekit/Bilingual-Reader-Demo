@@ -13,6 +13,7 @@ A simple [demo](https://hoekit.github.io/Bilingual-Reader-Demo/) for a Bilingual
 - Tap on a segment to play it
 - Text auto-scroll
 - Can handle different styles e.g. book or short conversations
+- Able to show images
 
 # TODO
 - Add ability to touch a segment to play it

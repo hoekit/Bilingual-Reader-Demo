@@ -23,7 +23,8 @@ let Bireader = {
 // Data
 Bireader.data_init = () => {
     return {
-        segmentList:  mock.data_segmentList(),
+        segmentList: mock.data_segmentList(),
+        imgList    : mock.data_imageList(),
         currIdx : -1,
         currMode:  1,        // One of: 1 (auto) | 0 (manual)
     }
@@ -117,6 +118,7 @@ Bireader.fsm_onState_play = (evt,data) => {
     if (evt === 'FIRST') {
         Bireader.data.currIdx = 0
     } else if (evt === 'NEXT') {
+        console.log(Bireader.data.currIdx)
         Bireader.data.currIdx++
     } else if (evt === 'PREV') {
         Bireader.data.currIdx--
@@ -136,6 +138,9 @@ Bireader.fsm_onState_play = (evt,data) => {
 
     m.redraw()
 
+    let segment = Bireader.data.segmentList[
+        Bireader.data.currIdx]
+    if (segment.type === 'image') { return }
 
     // Setup the audioNow tag and play it
     let now = document.getElementById('audioNow')
@@ -180,9 +185,20 @@ Bireader.fsm_onState_ended = (evt,data) => {
 Bireader.section.main = () => {
     let text = m('div.main',Bireader.data.segmentList.map(s => {
         let pointed = s.id === Bireader.data.currIdx ? '.pointed' : ''
-        return m('span.'+s.type+pointed,
+
+        let seg1 =
+            m('span.'+s.type+pointed,
                 {'data-ptr': s.id},
                  s.text+' ')
+
+        let seg2 = [
+            m('img', {src:s.image}),
+            m('span.'+s.type+pointed,
+                {'data-ptr': s.id},
+                 s.text+' ')
+        ]
+
+        return s.image ? seg2 : seg1
     }))
     let bottom = () => {
         if (typeof(Bireader.data.segmentList[Bireader.data.currIdx])
@@ -476,7 +492,8 @@ mock.data_segmentList_alibaba = () => {
             tran: '"Open, Sesamé!"',
             start: '00:00:',
             dura : '00:00:',
-            src  : 'audio/24.mp3'
+            src  : 'audio/24.mp3',
+            image: 'img/1.jpg',
         },
         {   id: 25,
             type: '',
@@ -802,10 +819,24 @@ mock.data_segmentList_sanzijing = () => {
         */
     ]
 }
+
+mock.data_imageList_alibaba = () => {
+    return [
+        {
+            src: 'img/1.jpg',
+        }
+    ]
+}
+mock.data_none = () => {
+    return []
+}
+
 const params = new URLSearchParams(window.location.search);
 const page = params.get("page") || 'alibaba'
 console.log(page)
 mock.data_segmentList = mock['data_segmentList_'+page]
+mock.data_imageList   = mock['data_imageList_'+page]
+                        || mock.data_none               // Default if not found
 
 // Setup before start
 Bireader.data = Bireader.data_init()
