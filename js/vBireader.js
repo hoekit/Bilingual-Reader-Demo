@@ -597,6 +597,54 @@ mock.data_segmentList_alibaba = () => {
             dura : '00:00:',
             src  : 'audio/37.mp3'
         },
+        {   id: 38,
+            type: 'paragraph-start',
+            text: 'As soon as he felt sure that they were not returning,',
+            tran: 'ทันทีที่เขารู้สึกแน่ใจว่าพวกเขาจะไม่กลับมา',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/38.mp3'
+        },
+        {   id: 39,
+            type: '',
+            text: 'Ali Baba came down from the tree',
+            tran: 'อาลีบาบาลงมาจากต้นไม้',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/39.mp3'
+        },
+        {   id: 40,
+            type: '',
+            text: 'and made his way at once to that part of the rock',
+            tran: 'และไปทันทีที่ส่วนนั้นของหิน',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/40.mp3'
+        },
+        {   id: 41,
+            type: '',
+            text: 'where he had seen the captain and his men enter.',
+            tran: 'ที่เขาได้เห็นกัปตันและลูกน้องเข้าไป',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/41.mp3'
+        },
+        {   id: 42,
+            type: '',
+            text: 'And there at the word "Open, Sesamé!"',
+            tran: 'และตรงคำว่า Open, Sesamé!',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/42.mp3'
+        },
+        {   id: 43,
+            type: 'paragraph-stop',
+            text: 'a door suddenly revealed itself and opened.',
+            tran: 'ทันใดนั้นประตูก็มองเห็นได้และเปิดออก',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/43.mp3'
+        },
     ]
 }
 mock.data_segmentList_alibaba_zh = () => {
