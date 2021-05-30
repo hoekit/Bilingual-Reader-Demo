@@ -222,10 +222,8 @@ Bireader.section.main = () => {
 Bireader.section.translation = () => {
     // Guard show nothing if no segment selected
     if (Bireader.data.currIdx < 0) { return }
-    return m('div', [
-        m('div.ph2.pt1.black.bg-lightest-blue',
-             Bireader.data.segmentList[Bireader.data.currIdx].tran),
-    ])
+    return m('div.ph2.pt1.navy.bg-lightest-blue.bt.bw1.b--light-blue',
+             Bireader.data.segmentList[Bireader.data.currIdx].tran)
 }
 Bireader.section.controls = () => {
     let click = ".dark-blue"
