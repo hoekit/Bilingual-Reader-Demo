@@ -1002,6 +1002,60 @@ mock.data_segmentList_sanzijing = () => {
         */
     ]
 }
+mock.data_segmentList_word_doctor = () => {
+    return [
+        {   id: 0,
+            type: 'chapter-title',
+            text: 'Doctor',
+            tran: 'หมอ',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/doctor0.mp3',
+            image: 'img/doctor0.jpg',
+        },
+        {   id: 1,
+            type: 'speaker-one',
+            text: 'My father is a doctor.',
+            tran: 'พ่อของฉันเป็นหมอ',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/doctor1.mp3'
+        },
+        {   id: 2,
+            type: 'speaker-two',
+            text: 'My mother is a doctor.',
+            tran: 'แม่ของฉันเป็นหมอ',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/doctor2.mp3'
+        },
+        {   id: 3,
+            type: 'speaker-one',
+            text: 'I am studying to be a doctor.',
+            tran: 'ฉันกำลังเรียนเพื่อเป็นหมอ',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/doctor3.mp3'
+        },
+        {   id: 4,
+            type: 'speaker-two',
+            text: 'I want to be a doctor.',
+            tran: 'ฉันอยากเป็นหมอ',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/doctor4.mp3'
+        },
+        {   id: 5,
+            type: 'speaker-one',
+            text: 'Most doctors work in a hospital.',
+            tran: 'แพทย์ส่วนใหญ่ทำงานในโรงพยาบาล',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/doctor5.mp3'
+        },
+
+    ]
+}
 
 mock.data_imageList_alibaba = () => {
     return [
