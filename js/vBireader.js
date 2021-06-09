@@ -645,6 +645,62 @@ mock.data_segmentList_alibaba = () => {
             dura : '00:00:',
             src  : 'audio/43.mp3'
         },
+        {   id: 44,
+            type: 'paragraph-start',
+            text: 'Ali Baba had expected to find a dark and gloomy cavern.',
+            tran: 'อาลีบาบาคาดว่าจะพบถ้ำที่มืดมน',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/44.mp3'
+        },
+        {   id: 45,
+            type: '',
+            text: 'Great was his astonishment therefore',
+            tran: 'เขาจึงประหลาดใจมาก',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/45.mp3'
+        },
+        {   id: 46,
+            type: '',
+            text: 'when he perceived a spacious and vaulted chamber',
+            tran: 'เมื่อเขาเห็นห้องที่กว้างขวางและมีหลังคาโค้ง',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/46.mp3'
+        },
+        {   id: 46,
+            type: '',
+            text: 'lighted from above through a fissure in the rock',
+            tran: 'มีแสงส่องมาจากเบื้องบนผ่านรอยแยกในหิน',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/46.mp3'
+        },
+        {   id: 48,
+            type: '',
+            text: 'and there spread out before him lay treasures in profusion,',
+            tran: 'แล้ววางไว้ต่อหน้าเขาคือสมบัติมากมาย',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/48.mp3'
+        },
+        {   id: 49,
+            type: '',
+            text: 'bales of merchandise, silks, carpets, brocades,',
+            tran: 'กองสินค้า, ผ้าไหม, พรม, ผ้าทอ,',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/49.mp3'
+        },
+        {   id: 50,
+            type: '',
+            text: 'and above all gold and silver lying in loose heaps or in sacks piled one upon another.',
+            tran: 'และเหนือสิ่งอื่นใด ทองคำและเงินที่วางกองรวมกันเป็นกองๆ หรือใส่กระสอบซ้อนกัน ',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/50.mp3'
+        },
     ]
 }
 mock.data_segmentList_alibaba_zh = () => {
