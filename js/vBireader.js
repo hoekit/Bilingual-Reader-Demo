@@ -744,7 +744,7 @@ mock.data_segmentList_alibaba = () => {
         {   id: 56,
             type: 'paragraph-stop',
             text: 'and departed for the town, a well-satisfied man.',
-            tran: '//และออกเดินทางไปเมืองอย่างพอใจ',
+            tran: 'และออกเดินทางไปเมืองอย่างพอใจ',
             start: '00:00:',
             dura : '00:00:',
             src  : 'audio/56.mp3'
