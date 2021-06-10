@@ -701,6 +701,54 @@ mock.data_segmentList_alibaba = () => {
             dura : '00:00:',
             src  : 'audio/50.mp3'
         },
+        {   id: 51,
+            type: '',
+            text: 'He did not take long to consider what he should do.',
+            tran: 'เขาใช้เวลาไม่นานในการพิจารณาว่าควรทำอย่างไร',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/51.mp3'
+        },
+        {   id: 52,
+            type: '',
+            text: 'Disregarding the silver and the gold that lay loose,',
+            tran: 'ไม่สนใจเงินและทองที่หลุดร่วง',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/52.mp3'
+        },
+        {   id: 53,
+            type: '',
+            text: 'he brought to the mouth of the cave as many sacks of gold as he thought his three asses might carry',
+            tran: 'เขานำถุงทองมาที่ปากถ้ำมากเท่าที่เขาคิดว่าลาทั้งสามของเขาจะแบกได้',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/53.mp3'
+        },
+        {   id: 54,
+            type: '',
+            text: 'and having loaded them on and covered them with wood so that they might not be seen,',
+            tran: 'บรรทุกแล้วคลุมด้วยฟืนไม่ให้ใครเห็น',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/54.mp3'
+        },
+        {   id: 55,
+            type: '',
+            text: 'he closed the rock by the utterance of the magic words which he had learned,',
+            tran: 'เขาปิดหินด้วยคำพูดของเวทมนตร์ที่เขาได้เรียนรู้',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/55.mp3'
+        },
+        {   id: 56,
+            type: 'paragraph-stop',
+            text: 'and departed for the town, a well-satisfied man.',
+            tran: '//และออกเดินทางไปเมืองอย่างพอใจ',
+            start: '00:00:',
+            dura : '00:00:',
+            src  : 'audio/56.mp3'
+        },
     ]
 }
 mock.data_segmentList_alibaba_zh = () => {
