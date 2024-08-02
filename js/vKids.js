@@ -7,6 +7,18 @@ let Kids = {
         video  : undefined,
     },
     view: () => {
+        if (typeof(Kids.data.kidName) == "undefined") {
+            return m('div',[
+                m('h1', "Kid's Videos"),
+                m('a', {href:'./kids.html?nick=pat'}, 'Patcharin (Pat)'),
+                m('br'),'| ',
+                m('a', {href:'./kids.html?nick=nan'}, 'Warapond (Nan)'),
+                m('br'),'| ',
+                m('a', {href:'./kids.html?nick=wa'}, 'Thunwa (Wa)'),
+                m('br'),'| ',
+                m('a', {href:'./kids.html?nick=nai'}, 'Warinthon (Nai)'),
+            ])
+        }
         return m('div',[
             Kids.section.header(),
             Kids.section.list(),
@@ -55,7 +67,7 @@ Kids.section.video = () => {
 // Mock Data
 let mock = {}
 mock.video_list = () => {
-    let root = 'http://192.168.1.32/Bilingual-Reader-Demo'
+    let root = '.'
     return {
         1: {
             id   : 1,
@@ -130,20 +142,191 @@ mock.video_list = () => {
         11: {
             id   : 11,
             name : '100 Opposite Words',
-            src  : root+'/video/WrdHwPfmk3M.webm',
+            src  : root+'/video/WrdHwPfmk3M.mp4',
             thumb: root+'/video/WrdHwPfmk3M.png',
             dura : '17:00',
         },
-
-
+        12: {
+            id   : 12,
+            name : 'Sight Words - Lesson 2',
+            src  : root+'/video/eEcSuinkI5Q-02.webm',
+            thumb: root+'/video/eEcSuinkI5Q-02.png',
+            dura : '6:11',
+        },
+        13: {
+            id   : 13,
+            name : 'Sight Words - Lesson 3',
+            src  : root+'/video/eEcSuinkI5Q-03.webm',
+            thumb: root+'/video/eEcSuinkI5Q-03.png',
+            dura : '5:59',
+        },
+        14: {
+            id   : 14,
+            name : 'Sight Words - Lesson 4',
+            src  : root+'/video/eEcSuinkI5Q-04.webm',
+            thumb: root+'/video/eEcSuinkI5Q-04.png',
+            dura : '6:05',
+        },
+        15: {
+            id   : 15,
+            name : 'Sight Words - Lesson 5',
+            src  : root+'/video/eEcSuinkI5Q-05.webm',
+            thumb: root+'/video/eEcSuinkI5Q-05.png',
+            dura : '6:16',
+        },
+        16: {
+            id   : 16,
+            name : 'Sight Words - Lesson 6',
+            src  : root+'/video/eEcSuinkI5Q-06.webm',
+            thumb: root+'/video/eEcSuinkI5Q-06.png',
+            dura : '6:28',
+        },
+        17: {
+            id   : 17,
+            name : 'Sight Words - Lesson 7',
+            src  : root+'/video/eEcSuinkI5Q-07.webm',
+            thumb: root+'/video/eEcSuinkI5Q-07.png',
+            dura : '6:48',
+        },
+        19: {
+            id   : 19,
+            name : 'Sight Words - Lesson 9',
+            src  : root+'/video/eEcSuinkI5Q-09.webm',
+            thumb: root+'/video/eEcSuinkI5Q-09.png',
+            dura : '6:22',
+        },
+        20: {
+            id   : 20,
+            name : 'Sight Words - Lesson 10',
+            src  : root+'/video/eEcSuinkI5Q-10.webm',
+            thumb: root+'/video/eEcSuinkI5Q-10.png',
+            dura : '7:00',
+        },
+        21: {
+            id   : 21,
+            name : 'Sight Words - Lesson 11',
+            src  : root+'/video/eEcSuinkI5Q-11.webm',
+            thumb: root+'/video/eEcSuinkI5Q-11.png',
+            dura : '6:06',
+        },
+        22: {
+            id   : 22,
+            name : 'Sight Words - Lesson 12',
+            src  : root+'/video/eEcSuinkI5Q-12.webm',
+            thumb: root+'/video/eEcSuinkI5Q-12.png',
+            dura : '6:35',
+        },
+        23: {
+            id   : 23,
+            name : 'Sight Words - Lesson 13',
+            src  : root+'/video/eEcSuinkI5Q-13.webm',
+            thumb: root+'/video/eEcSuinkI5Q-13.png',
+            dura : '6:08',
+        },
+        24: {
+            id   : 24,
+            name : 'Sight Words - Lesson 14',
+            src  : root+'/video/eEcSuinkI5Q-14.webm',
+            thumb: root+'/video/eEcSuinkI5Q-14.png',
+            dura : '5:46',
+        },
+        25: {
+            id   : 25,
+            name : 'Sight Words - Lesson 15',
+            src  : root+'/video/eEcSuinkI5Q-15.webm',
+            thumb: root+'/video/eEcSuinkI5Q-15.png',
+            dura : '6:01',
+        },
+        26: {
+            id   : 26,
+            name : 'Sight Words - Lesson 16',
+            src  : root+'/video/eEcSuinkI5Q-16.webm',
+            thumb: root+'/video/eEcSuinkI5Q-16.png',
+            dura : '5:39',
+        },
+        27: {
+            id   : 27,
+            name : 'Sight Words - Lesson 17',
+            src  : root+'/video/eEcSuinkI5Q-17.webm',
+            thumb: root+'/video/eEcSuinkI5Q-17.png',
+            dura : '5:54',
+        },
+        28: {
+            id   : 28,
+            name : 'Sight Words - Lesson 18',
+            src  : root+'/video/eEcSuinkI5Q-18.webm',
+            thumb: root+'/video/eEcSuinkI5Q-18.png',
+            dura : '5:54',
+        },
+        29: {
+            id   : 29,
+            name : 'Sight Words - Lesson 19',
+            src  : root+'/video/eEcSuinkI5Q-19.webm',
+            thumb: root+'/video/eEcSuinkI5Q-19.png',
+            dura : '6:16',
+        },
+        30: {
+            id   : 30,
+            name : 'Sight Words - Lesson 20',
+            src  : root+'/video/eEcSuinkI5Q-20.webm',
+            thumb: root+'/video/eEcSuinkI5Q-20.png',
+            dura : '6:33',
+        },
+        31: {
+            id   : 31,
+            name : 'Making healthy choices',
+            src  : root+'/video/U6GJMpg9dT4.webm',
+            thumb: root+'/video/U6GJMpg9dT4.png',
+            dura : '12:31',
+        },
+        32: {
+            id   : 32,
+            name : 'Do you have free time?',
+            src  : root+'/video/ezgU4hsEA7U.mp4',
+            thumb: root+'/video/ezgU4hsEA7U.png',
+            dura : '9:11',
+        },
     }
 }
 mock.kid_videos = nick => {
     return {
-        pat: [1,2,3,4],
-        nan: [1,2,7,8,11],
-        wa : [1,2,7,10],
-        nai: [3,4,5,6,9],
+        pat: [
+            1,
+            2,
+            3,
+            4,
+            31,         // Conversation: Making Healthy Choices
+            32,         // Conversation: Do you have free time?
+        ],
+        nan: [
+            1,
+            2,
+            7,
+            8,
+            11,         // 100 Opposite Words
+            31,         // Conversation: Making Healthy Choices
+            // 32,         // Conversation: Do you have free time?
+        ],
+        wa : [
+            1,
+            2,
+            7,
+            10,         // Sight Words 1/1
+            12,         // Sight Words 1/2
+            13,         // Sight Words 1/3
+            // 14,         // Sight Words 1/4
+            // 15,         // Sight Words 1/5
+            // 16,         // Sight Words 1/6
+            // 17,         // Sight Words 1/7
+        ],
+        nai: [
+            3,
+            4,
+            5,
+            6,
+            9,
+            10,         // Sight Words 1/1
+        ],
     }[nick]
 }
 
