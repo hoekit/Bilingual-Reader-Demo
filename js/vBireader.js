@@ -1305,6 +1305,61 @@ mock.data_segmentList_word_doctor = () => {
 
     ]
 }
+mock.data_segmentList_MangalaSutta = () => {
+    return [
+        {   id: 0,
+            type: 'chapter-title',
+            text: 'Mangala Sutta',
+            tran: 'มังคละสูตร',
+
+            src : 'audio/mgs0.mp3',
+        },
+        {   id: 1,
+            type: 'paragraph-start',
+            text: 'Bahu deva manussa ca  Mangalani acintayum',
+            tran: 'Many devas & humans, contemplate blessings, desiring well-being',
+            src : 'audio/mgs1.mp3'
+        },
+        {   id: 2,
+            type: 'paragraph-stop',
+            text: 'Akan khamana sottanam  Bruhi mangala-muttamam',
+            tran: 'So Master, please tell us then the highest blessings',
+            src : 'audio/mgs2.mp3'
+        },
+        {   id: 3,
+            type: 'paragraph-start',
+            text: 'Asevana ca balanam  Panditanan-ca sevana',
+            tran: 'Not associating with fools; Associating with the wise;',
+            src : 'audio/mgs3.mp3'
+        },
+        {   id: 4,
+            type: 'paragraph-stop',
+            text: 'Puja ca pujaniyanam  Etam mangala-muttamam',
+            tran: 'Paying homage to those deserving homage; this is the highest blessing',
+            src : 'audio/mgs4.mp3'
+        },
+        {   id: 5,
+            type: 'paragraph-start',
+            text: 'Patirupa-desa-vaso ca Pubbe ca kata-punnata',
+            tran: 'Living in befitting places; Having made merit in the past',
+            src : 'audio/mgs5.mp3'
+        },
+        {   id: 6,
+            type: 'paragraph-stop',
+            text: 'Atta-samma-panidhi ca Etam mangala-muttamam',
+            tran: 'Directing oneself rightly; this is the highest blessing',
+            src : 'audio/mgs6.mp3'
+        },
+        /*
+        {   id: ,
+            type: '',
+            text: '',
+            tran: '',
+            src : 'audio/mgs.mp3'
+        },
+        */
+      ]
+}
 
 mock.data_imageList_alibaba = () => {
     return [
